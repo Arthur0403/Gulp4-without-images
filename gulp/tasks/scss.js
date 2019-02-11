@@ -1,22 +1,23 @@
 module.exports = function(){
     var scss = require('gulp-sass')
-    _.gulp.task('scss', function(){
-        return _.gulp.src('src/static/scss/**/*.scss')
-        .pipe(_.gp.sourcemaps.init())
+    $.gulp.task('scss', function(){
+        return $.gulp.src('src/static/scss/**/*.scss')
+        .pipe($.gp.sourcemaps.init())
         .pipe(scss({
-            'include css': true
+            'include css': true,
+            includePaths: require('node-normalize-scss').includePaths
         }))
-        .pipe(_.gp.autoprefixer({
+        .pipe($.gp.autoprefixer({
             browsers: ['last 10 versions'],
         }))
-        .on("error", _.gp.notify.onError({
+        .on("error", $.gp.notify.onError({
             message: "Error: <%= error.message %>",
             title: "scss"
         }))
-        .pipe(_.gp.csso())
-        .pipe(_.gp.sourcemaps.write())
-        .pipe(_.gulp.dest('build'))
-        .pipe(_.browserSync.reload({
+        .pipe($.gp.csso())
+        .pipe($.gp.sourcemaps.write())
+        .pipe($.gulp.dest('build'))
+        .pipe($.browserSync.reload({
             stream: true
         }));
     });

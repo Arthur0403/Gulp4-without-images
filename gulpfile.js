@@ -1,6 +1,6 @@
 'use strict';
 
-global._ = {
+global.$ = {
     gulp: require('gulp'),
     gp: require('gulp-load-plugins')(),
     browserSync: require('browser-sync').create(),
@@ -11,18 +11,18 @@ global._ = {
     }
 };
 
-_.path.tasks.forEach(function(taskPath){
-    require(taskPath)();
+$.path.tasks.forEach(function(taskPath){
+   require(taskPath)();
 })
 
 // var src = {
-//     scss: path.resolve(__dirname, 'src', 'static', 'scss', '**/*.+(scss|sass)'),
-//     pug: path.resolve(__dirname, 'src', 'pug', 'pages', '**/*.pug'),
+//     scss: path.resolve($$dirname, 'src', 'static', 'scss', '**/*.+(scss|sass)'),
+//     pug: path.resolve($$dirname, 'src', 'pug', 'pages', '**/*.pug'),
 // } Варинат с использованием path
 
-_.gulp.task('default', _.gulp.series(
-    _.gulp.parallel('pug', 'scss', 'scripts:lib', 'scripts'),
-    _.gulp.parallel('watch', 'server'),
+$.gulp.task('default', $.gulp.series(
+    $.gulp.parallel('html', 'scss', 'scripts:lib', 'scripts'),
+    $.gulp.parallel('watch', 'server'),
     'watch',
     'server'
     ));
